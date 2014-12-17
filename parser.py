@@ -97,5 +97,32 @@ def combineData(cases, recurrence):
 
 # ------------------------------------------------------- #
 
+def readPredictiveGenes(num):
+    """
+    This function parses the file containing the most predicitve genes
+    and returns a list containing the indices of those genes.
+    Num is an int representing the number of predicitve genes you wish 
+    to use
+    """
+    inFile = open('predictiveGenes.txt', 'r')
+
+    geneList = []
+    for line in inFile:
+        line = line.split()
+    i = 0
+    for item in line:
+        if i == 0:
+            item = item.strip('(').strip(',').strip('[').strip('(')
+            item = int(item)
+            geneList.append(item)
+            i = 1
+        elif i == 1:
+            i = 0
+    
+    inFile.close()
+    return geneList
+
+# ------------------------------------------------------- #
+
 if __name__ == '__main__':
     main()

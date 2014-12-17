@@ -11,6 +11,7 @@ from classes import *
 # stored in predictiveGenes.txt.
 
 def main():
+
     NUM_GENES = 100
 
     nn = Network(1, NUM_GENES )
