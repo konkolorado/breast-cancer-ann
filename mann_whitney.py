@@ -24,7 +24,7 @@ from operator import itemgetter
 
 # ------------------------------------------------------- #
 
-def main():
+def find_genes():
     # cases[patient] = [gene_expressions]
     cases = readDataFile()
     allPatients = cases.keys()
@@ -43,8 +43,8 @@ def main():
         expressionMatrix.append(cases[p])
 
     # for every gene
-    smallestP = dict()
-    #meansList = []
+    pvalues  = dict()
+    meansList = []
     for g in range(1,len(expressionMatrix[0])):
         # Bootstrp 100 times to obtain gene expressions representative of
         # the gene distribution
@@ -62,24 +62,20 @@ def main():
         #mean = calcMean(measurementList)
         #meansList.append(mean)
         
-        minP = 1
-        for j in range(g+1, len(expressionMatrix[0])):
-            comparisons = []
-            for patient in randList:
-                comparisons.append( float(expressionMatrix[patient][j] ) )
+        # create list of every patient's gene expressions for gene g
+        allG = []
+        for j in range(len(expressionMatrix)):
+            allG.append( expressionMatrix[j][g] )
 
-            # do the mann-whitney test and store test stat
-            p=stats.mannwhitneyu(measurementList,comparisons,use_continuity=True)[1]
-            if p < minP:
-               minP = p
-        
-        # G is index of gene, minP is the smallest probability according to the mannwhit
-        smallestP[g] = minP
+        # do the mann-whitney test and store test stat
+        p=stats.mannwhitneyu(measurementList, allG,use_continuity=True)[1]
+        pvalues[g] = p
 
     # Get smallest p-valued genes and use those as your predictors
-    sorted_g = sorted(smallestP.items(), key=itemgetter(1))
-
-    outFile = open('predictiveGenes', 'w')
+    sorted_g = sorted(pvalues.items(), key=itemgetter(1))
+    
+    # Store genes into file
+    outFile = open('predictiveGenes.txt', 'w')
     outFile.write(str(sorted_g[:100]))
 
 # ------------------------------------------------------- #
@@ -134,6 +130,4 @@ def calcMean(dataList):
 
 # ------------------------------------------------------- #
 
-# ------------------------------------------------------- #
-
-main()
+find_genes()
