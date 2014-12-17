@@ -96,8 +96,8 @@ class Layer(object):
 	
 class Network(object):
 	NUM_ON = 1
-	NUM_HN = 10
-	LEARNING_RATE = 0.5
+	NUM_HN = 15
+	LEARNING_RATE = 0.3
 	
 	def __init__(self, numHiddenLayer, numFeatures):
 		
