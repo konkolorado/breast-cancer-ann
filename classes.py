@@ -5,9 +5,9 @@ import numpy as np
 # ----------------------------------------------------------------- #
 
 class Neuron(object):
-"""
-Represents a generic neuron in the Artificial Neural Network (ANN).
-"""
+        """
+        Represents a generic neuron in the Artificial Neural Network (ANN).
+        """
 	# General node if bias is not set; Bias node if bias is set.
 	def __init__(self, bias = 0):
 		self.incomingEdges = []
@@ -130,8 +130,8 @@ class Network(object):
 	def __init__(self, numHiddenLayer, numFeatures):
 		
 		# Create nodes and layers.		
-		self.inputLayer = Layer( numFeatures, INPUT_TYPE)
-		self.outputLayer = Layer(Network.NUM_ON, OUTPUT_TYPE)
+		self.inputLayer = Layer( numFeatures, Network.INPUT_TYPE)
+		self.outputLayer = Layer(Network.NUM_ON, Network.OUTPUT_TYPE)
 		
 		self.hiddenLayers = []
 		for i in range(numHiddenLayer):
