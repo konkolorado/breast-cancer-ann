@@ -13,6 +13,12 @@ def main():
 # ------------------------------------------------------- #
 
 def readDataFile():
+    """
+    This function reads the gene expression data file stored locally on 
+    the computer flour. It creates a dictionary where keys are a patient's
+    name and the value is a list of the patient's gene expression data.
+    """
+
     dataFile = "/local/data.txt"
     inFile = open(dataFile, 'r')
 
@@ -37,7 +43,7 @@ def readDataFile():
 
         i += 1
 
-    # cases dictionary of the form:
+    # Cases dictionary of the form:
     # cases[patient_name] = [expression1, expression2 .... expression22283]
 
     inFile.close()
@@ -46,6 +52,12 @@ def readDataFile():
 # ------------------------------------------------------- #
 
 def readDemoFile():
+    """
+    This function reads the given demographics file and 
+    stores patient name and breast cancer recurrence 
+    with 5 years into a dictionary.
+    """
+
     demoFile = "/local/demographics.txt"
     inFile = open(demoFile, 'r')
     

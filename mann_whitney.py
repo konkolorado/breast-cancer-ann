@@ -73,8 +73,9 @@ def find_genes():
 
     # Get smallest p-valued genes and use those as your predictors
     sorted_g = sorted(pvalues.items(), key=itemgetter(1))
-
-    outFile = open('predictiveGenes', 'w')
+    
+    # Store genes into file
+    outFile = open('predictiveGenes.txt', 'w')
     outFile.write(str(sorted_g[:100]))
 
 # ------------------------------------------------------- #
